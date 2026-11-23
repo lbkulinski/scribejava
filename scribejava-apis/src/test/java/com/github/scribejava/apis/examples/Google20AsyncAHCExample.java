@@ -1,5 +1,6 @@
 package com.github.scribejava.apis.examples;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Random;
 import java.util.Scanner;
 import com.github.scribejava.apis.GoogleApi20;
@@ -33,9 +34,9 @@ public class Google20AsyncAHCExample {
         final String secretState = "secret" + new Random().nextInt(999_999);
         final HttpClientConfig clientConfig = new AhcHttpClientConfig(new DefaultAsyncHttpClientConfig.Builder()
                 .setMaxConnections(5)
-                .setRequestTimeout(10_000)
-                .setPooledConnectionIdleTimeout(1_000)
-                .setReadTimeout(1_000)
+                .setRequestTimeout(java.time.Duration.ofMillis(10_000))
+                .setPooledConnectionIdleTimeout(java.time.Duration.ofMillis(1_000))
+                .setReadTimeout(java.time.Duration.ofMillis(1_000))
                 .build());
 
         try (OAuth20Service service = new ServiceBuilder(clientId)
@@ -44,7 +45,7 @@ public class Google20AsyncAHCExample {
                 .callback("http://example.com/callback")
                 .httpClientConfig(clientConfig)
                 .build(GoogleApi20.instance())) {
-            final Scanner in = new Scanner(System.in, "UTF-8");
+            final Scanner in = new Scanner(System.in, StandardCharsets.UTF_8);
 
             System.out.println("=== " + NETWORK_NAME + "'s OAuth Workflow ===");
             System.out.println();

@@ -9,7 +9,6 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>com.github.scribejava</groupId>
     <artifactId>scribejava-httpclient-armeria</artifactId>
     <name>ScribeJava Async Armeria Client support</name>
     <packaging>jar</packaging>
@@ -29,7 +28,7 @@
         <dependency>
             <groupId>com.linecorp.armeria</groupId>
             <artifactId>armeria</artifactId>
-            <version>1.20.2</version>
+            <version>1.43.1</version>
         </dependency>
         <dependency>
             <groupId>com.github.scribejava</groupId>
@@ -53,7 +52,4 @@
         </plugins>
     </build>
 
-    <properties>
-        <java.release>8</java.release>
-    </properties>
 </project>

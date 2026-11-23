@@ -32,9 +32,9 @@ public class VkontakteExternalHttpExample {
         //create any http client externally
         final DefaultAsyncHttpClientConfig httpClientConfig = new DefaultAsyncHttpClientConfig.Builder()
                 .setMaxConnections(5)
-                .setRequestTimeout(10_000)
-                .setPooledConnectionIdleTimeout(1_000)
-                .setReadTimeout(1_000)
+                .setRequestTimeout(java.time.Duration.ofMillis(10_000))
+                .setPooledConnectionIdleTimeout(java.time.Duration.ofMillis(1_000))
+                .setReadTimeout(java.time.Duration.ofMillis(1_000))
                 .build();
         //wrap it
         try ( DefaultAsyncHttpClient ahcHttpClient = new DefaultAsyncHttpClient(httpClientConfig)) {

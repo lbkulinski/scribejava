@@ -19,7 +19,6 @@
         <module>scribejava-java8</module>
         <module>scribejava-apis</module>
         <module>scribejava-httpclient-ahc</module>
-        <module>scribejava-httpclient-ning</module>
         <module>scribejava-httpclient-okhttp</module>
         <module>scribejava-httpclient-apache</module>
         <module>scribejava-httpclient-armeria</module>
@@ -55,7 +54,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.14.0</version>
+            <version>2.23.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -66,7 +65,7 @@
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>mockwebserver</artifactId>
-            <version>4.10.0</version>
+            <version>4.12.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -212,7 +211,6 @@
                                 <sourceDirectory>${basedir}/src</sourceDirectory>
                             </sourceDirectories>
                             <configLocation>checkstyle.xml</configLocation>
-                            <encoding>UTF-8</encoding>
                             <includeTestSourceDirectory>true</includeTestSourceDirectory>
                         </configuration>
                         <goals>
@@ -248,7 +246,7 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <targetJdk>1.${java.release}</targetJdk>
+                    <targetJdk>${java.release}</targetJdk>
                     <linkXRef>false</linkXRef>
                     <rulesets>
                         <ruleset>../pmd.xml</ruleset>
@@ -269,7 +267,7 @@
     </build>
 
     <properties>
-        <java.release>7</java.release>
+        <java.release>11</java.release>
         <pmdVersion>6.51.0</pmdVersion>
     </properties>
 

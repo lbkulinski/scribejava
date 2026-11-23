@@ -9,7 +9,6 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>com.github.scribejava</groupId>
     <artifactId>scribejava-apis</artifactId>
     <name>ScribeJava APIs</name>
     <packaging>jar</packaging>
@@ -23,12 +22,6 @@
         <dependency>
             <groupId>com.github.scribejava</groupId>
             <artifactId>scribejava-httpclient-ahc</artifactId>
-            <version>${project.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.scribejava</groupId>
-            <artifactId>scribejava-httpclient-ning</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>

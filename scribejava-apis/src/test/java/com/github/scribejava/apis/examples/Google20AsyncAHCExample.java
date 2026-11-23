@@ -13,6 +13,7 @@ import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -34,9 +35,9 @@ public class Google20AsyncAHCExample {
         final String secretState = "secret" + new Random().nextInt(999_999);
         final HttpClientConfig clientConfig = new AhcHttpClientConfig(new DefaultAsyncHttpClientConfig.Builder()
                 .setMaxConnections(5)
-                .setRequestTimeout(java.time.Duration.ofMillis(10_000))
-                .setPooledConnectionIdleTimeout(java.time.Duration.ofMillis(1_000))
-                .setReadTimeout(java.time.Duration.ofMillis(1_000))
+                .setRequestTimeout(Duration.ofMillis(10_000))
+                .setPooledConnectionIdleTimeout(Duration.ofMillis(1_000))
+                .setReadTimeout(Duration.ofMillis(1_000))
                 .build());
 
         try (OAuth20Service service = new ServiceBuilder(clientId)

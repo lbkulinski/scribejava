@@ -3,13 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.scribejava</groupId>
+        <groupId>net.lbku</groupId>
         <artifactId>scribejava</artifactId>
-        <version>8.3.4-SNAPSHOT</version>
+        <version>9.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>com.github.scribejava</groupId>
     <artifactId>scribejava-java8</artifactId>
     <name>ScribeJava Java 8+ compatibility stuff</name>
     <packaging>jar</packaging>
@@ -27,7 +26,4 @@
         </plugins>
     </build>
 
-    <properties>
-        <java.release>8</java.release>
-    </properties>
 </project>

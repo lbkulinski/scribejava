@@ -1,0 +1,82 @@
+name: ScribeJava - Release & Publish to Maven Central
+on:
+  push:
+    tags: [ "v*" ]
+
+concurrency:
+  group: deploy-${{ github.ref_name }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Set up JDK
+        uses: actions/setup-java@v6.3.0
+        with:
+          distribution: corretto
+          java-version: '25'
+          server-id: central
+          server-username: OSSRH_USERNAME
+          server-password: OSSRH_PASSWORD
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
+
+      - name: Read project version from pom.xml
+        id: ver
+        run: |
+          VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:3.5.0:exec)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Verify tag matches project version
+        env:
+          VERSION: ${{ steps.ver.outputs.version }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          if [[ "$VERSION" == *-SNAPSHOT ]]; then
+            echo "::error::Project version $VERSION is a SNAPSHOT and cannot be released"
+            exit 1
+          fi
+          if [[ "$TAG" != "v$VERSION" ]]; then
+            echo "::error::Tag $TAG does not match project version v$VERSION"
+            exit 1
+          fi
+
+      - name: Build & Publish to Maven Central
+        run: mvn -B -DperformRelease=true clean deploy
+        env:
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+
+      - name: Extract release notes from CHANGELOG.md
+        id: notes
+        run: |
+          VER="${{ steps.ver.outputs.version }}"
+          awk -v ver="$VER" 'BEGIN { regex="^##[[:space:]]+\\[?" ver "\\]?([[:space:]]*-.*)?$" } $0 ~ regex {flag=1; next} flag && /^##[[:space:]]/ {flag=0} flag' CHANGELOG.md > RELEASE_NOTES.md || true
+          if [ ! -s RELEASE_NOTES.md ]; then
+            echo "No changelog section found for ${VER}." > RELEASE_NOTES.md
+          fi
+          echo "path=RELEASE_NOTES.md" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release and upload artifacts
+        uses: softprops/action-gh-release@8a0cd651e5b2365bd640854a3fa5dfc70e4875f3 # v3.0.4
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: scribejava ${{ github.ref_name }}
+          body_path: ${{ steps.notes.outputs.path }}
+          overwrite_files: true
+          files: |
+            */target/*.jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

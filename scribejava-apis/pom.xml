@@ -3,57 +3,44 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.scribejava</groupId>
+        <groupId>net.lbku</groupId>
         <artifactId>scribejava</artifactId>
-        <version>8.3.4-SNAPSHOT</version>
+        <version>9.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>com.github.scribejava</groupId>
     <artifactId>scribejava-apis</artifactId>
     <name>ScribeJava APIs</name>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>com.github.scribejava</groupId>
+            <groupId>net.lbku</groupId>
             <artifactId>scribejava-core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.scribejava</groupId>
+            <groupId>net.lbku</groupId>
             <artifactId>scribejava-httpclient-ahc</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.scribejava</groupId>
-            <artifactId>scribejava-httpclient-ning</artifactId>
-            <version>${project.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.scribejava</groupId>
+            <groupId>net.lbku</groupId>
             <artifactId>scribejava-httpclient-okhttp</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.scribejava</groupId>
+            <groupId>net.lbku</groupId>
             <artifactId>scribejava-httpclient-apache</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.scribejava</groupId>
+            <groupId>net.lbku</groupId>
             <artifactId>scribejava-httpclient-armeria</artifactId>
             <version>${project.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-resolver</artifactId>
-            <version>4.1.84.Final</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

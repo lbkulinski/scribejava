@@ -1,18 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.scribejava</groupId>
+    <groupId>net.lbku</groupId>
     <artifactId>scribejava</artifactId>
     <packaging>pom</packaging>
-    <version>8.3.4-SNAPSHOT</version>
+    <version>9.0.0</version>
     <name>ScribeJava OAuth Library</name>
-    <description>The best OAuth library out there</description>
-    <url>https://github.com/scribejava/scribejava</url>
-
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>9</version>
-    </parent>
+    <description>A maintained fork of ScribeJava, the simple OAuth library for Java, with updated dependencies</description>
+    <url>https://github.com/lbkulinski/scribejava</url>
 
     <modules>
         <module>scribejava-core</module>
@@ -27,28 +21,41 @@
     <licenses>
         <license>
             <name>MIT</name>
-            <url>https://github.com/scribejava/scribejava/blob/master/LICENSE.txt</url>
+            <url>https://github.com/lbkulinski/scribejava/blob/master/LICENSE.txt</url>
         </license>
     </licenses>
 
     <scm>
-        <connection>scm:git:https://github.com/scribejava/scribejava</connection>
-        <developerConnection>scm:git:https://github.com/scribejava/scribejava</developerConnection>
-        <url>https://github.com/scribejava/scribejava</url>
+        <connection>scm:git:https://github.com/lbkulinski/scribejava.git</connection>
+        <developerConnection>scm:git:https://github.com/lbkulinski/scribejava.git</developerConnection>
+        <url>https://github.com/lbkulinski/scribejava</url>
         <tag>HEAD</tag>
     </scm>
 
     <developers>
         <developer>
-            <id>kullfar</id>
-            <name>Stanislav Gromov</name>
-            <email>kullfar@gmail.com</email>
-            <roles>
-                <role>all</role>
-            </roles>
-            <timezone>+3</timezone>
+            <id>lbkulinski</id>
+            <name>Logan Kulinski</name>
+            <url>https://github.com/lbkulinski</url>
         </developer>
     </developers>
+
+    <contributors>
+        <contributor>
+            <name>Pablo Fernandez</name>
+            <url>https://github.com/scribejava/scribejava</url>
+            <roles>
+                <role>original author of ScribeJava</role>
+            </roles>
+        </contributor>
+        <contributor>
+            <name>Stanislav Gromov</name>
+            <url>https://github.com/scribejava/scribejava</url>
+            <roles>
+                <role>maintainer of upstream ScribeJava</role>
+            </roles>
+        </contributor>
+    </contributors>
 
     <dependencies>
         <dependency>
@@ -147,24 +154,21 @@
                 </configuration>
             </plugin>
             <plugin>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>3.0.0</version>
-                <executions>
-                    <execution>
-                        <id>default-deploy</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.3.0</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.12.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <autoPublish>false</autoPublish>
                 </configuration>
             </plugin>
             <plugin>
@@ -285,7 +289,10 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>3.0.1</version>
+                        <version>3.2.8</version>
+                        <configuration>
+                            <useAgent>false</useAgent>
+                        </configuration>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>

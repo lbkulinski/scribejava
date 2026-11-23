@@ -57,6 +57,23 @@
         </contributor>
     </contributors>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-bom</artifactId>
+                <version>${netty.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons-codec.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -72,7 +89,7 @@
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>mockwebserver</artifactId>
-            <version>4.12.0</version>
+            <version>4.12.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -273,6 +290,9 @@
     <properties>
         <java.release>11</java.release>
         <pmdVersion>6.51.0</pmdVersion>
+        <netty.version>4.2.21.Final</netty.version>
+        <netty.tcnative.version>2.0.86.Final</netty.tcnative.version>
+        <commons-codec.version>1.23.0</commons-codec.version>
     </properties>
 
     <profiles>

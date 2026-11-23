@@ -23,12 +23,12 @@ First release of the `net.lbku` fork, based on upstream ScribeJava 8.3.3.
   Its timeout settings take `java.time.Duration`
 - Bumped `com.fasterxml.jackson.core:jackson-databind` from **2.14.0** → **2.23.0**
 - Bumped `com.linecorp.armeria:armeria` from **1.20.2** → **1.43.1**
-- Bumped `com.squareup.okhttp3:okhttp` from **4.10.0** → **4.12.0**
+- Bumped `com.squareup.okhttp3:okhttp` from **4.10.0** → **4.12.1**
 - Bumped `org.apache.httpcomponents:httpclient` from **4.5.13** → **4.5.14**
 - Bumped `commons-codec:commons-codec` from **1.15** → **1.23.0**
 - Bumped `jakarta.xml.bind:jakarta.xml.bind-api` from **4.0.0** → **4.0.5**
 - Bumped `javax.xml.bind:jaxb-api` from **2.3.0** → **2.3.1**
-- Netty is now **4.2.21** in `scribejava-httpclient-ahc` (was 4.1.60)
+- Netty (including `netty-tcnative` **2.0.86**) and `commons-codec` are declared directly in `scribejava-httpclient-ahc`, `scribejava-httpclient-armeria` and `scribejava-httpclient-apache`, so consumers resolve patched versions (Netty **4.2.21**, `commons-codec` **1.23.0**) instead of the older ones those libraries declare
 - Publishing to Maven Central now uses `central-publishing-maven-plugin`
 
 ### Removed

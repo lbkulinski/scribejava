@@ -1,6 +1,11 @@
 # ScribeJava (net.lbku fork), the simple OAuth client Java lib!
 
-[![Maven Central](https://img.shields.io/maven-central/v/net.lbku/scribejava-core)](https://central.sonatype.com/artifact/net.lbku/scribejava-core) [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-yellow?logo=buymeacoffee)](https://buymeacoffee.com/cta4j)
+[![Maven Central](https://img.shields.io/maven-central/v/net.lbku/scribejava-core)](https://central.sonatype.com/artifact/net.lbku/scribejava-core)
+[![Build & Test](https://github.com/lbkulinski/scribejava/actions/workflows/build.yaml/badge.svg)](https://github.com/lbkulinski/scribejava/actions/workflows/build.yaml)
+[![Javadoc](https://javadoc.io/badge2/net.lbku/scribejava-core/javadoc.svg)](https://javadoc.io/doc/net.lbku/scribejava-core)
+![Java Version](https://img.shields.io/badge/Java-11%2B-orange)
+[![License](https://img.shields.io/github/license/lbkulinski/scribejava)](LICENSE.txt)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-yellow?logo=buymeacoffee)](https://buymeacoffee.com/cta4j)
 
 > **This is a fork of [ScribeJava](https://github.com/scribejava/scribejava)** with updated dependencies, published to Maven Central as `net.lbku`. See [About this fork](#about-this-fork).
 
@@ -154,7 +159,7 @@ Differences from upstream:
 
 * **Maven coordinates:** `net.lbku` instead of `com.github.scribejava`. The artifact ids (`scribejava-core`, `scribejava-apis`, ...) and the Java package names (`com.github.scribejava.*`) are unchanged.
 * **Java 11 or newer** is required (upstream supports Java 7+).
-* **Updated dependencies:** Jackson, Netty, async-http-client (now 3.x), Armeria, Apache HttpClient, OkHttp (4.12.0), commons-codec and others, so that none of the runtime dependencies has a known vulnerability at the time of release.
+* **Updated dependencies:** Jackson, Netty, async-http-client (now 3.x), Armeria, Apache HttpClient, OkHttp (4.12.1), commons-codec and others, so that none of the runtime dependencies has a known vulnerability at the time of release.
 * **Removed `scribejava-httpclient-ning`**, which depended on the end-of-life Netty 3.
 * async-http-client 3.x takes `java.time.Duration` for its timeout settings, so code that configures `DefaultAsyncHttpClientConfig` timeouts must be updated.
 
